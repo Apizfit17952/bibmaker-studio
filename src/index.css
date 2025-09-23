@@ -1,97 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Condensed:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Athletic Marathon Bib Generator Design System */
 
 @layer base {
   :root {
+    /* Base Colors */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 8% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 8% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Athletic Primary - Dynamic Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 217 91% 70%;
+
+    /* Athletic Secondary - Energetic Orange */
+    --secondary: 24 95% 53%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* Success - Victory Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+
+    /* Warning - Caution Yellow */
+    --warning: 45 93% 47%;
+    --warning-foreground: 240 10% 4%;
+
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 240 8% 12%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 6% 20%;
+    --input: 240 6% 15%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Athletic Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
+    --gradient-athletic: linear-gradient(135deg, hsl(24 95% 53%), hsl(357 75% 58%));
+    --gradient-victory: linear-gradient(135deg, hsl(142 76% 36%), hsl(168 85% 44%));
+    --gradient-champion: linear-gradient(135deg, hsl(45 93% 47%), hsl(24 95% 53%));
+    --gradient-hero: linear-gradient(135deg, hsl(240 10% 4%), hsl(240 8% 12%));
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+
+    /* Athletic Shadows */
+    --shadow-athletic: 0 20px 60px -12px hsl(217 91% 60% / 0.25);
+    --shadow-glow: 0 0 40px hsl(217 91% 70% / 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(240 10% 4% / 0.4);
+
+    /* Transitions */
+    --transition-athletic: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .light {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 240 10% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 10% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 10% 4%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 24 95% 53%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 10% 4%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --border: 240 6% 90%;
+    --input: 240 6% 96%;
+    --ring: 217 91% 60%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --shadow-athletic: 0 20px 60px -12px hsl(217 91% 60% / 0.15);
+    --shadow-card: 0 8px 32px -8px hsl(240 10% 4% / 0.1);
   }
+}
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+/* Athletic Animations */
+@keyframes athletic-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+@keyframes runner-bounce {
+  0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+  40%, 43% { transform: translateY(-8px); }
+  70% { transform: translateY(-4px); }
+}
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+@keyframes bib-generate {
+  0% { transform: scale(0.8) rotate(-2deg); opacity: 0; }
+  50% { transform: scale(1.05) rotate(1deg); opacity: 0.8; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 @layer base {
@@ -100,6 +129,93 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--accent)));
+    min-height: 100vh;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Athletic Button Variants */
+  .btn-athletic {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold transition-all duration-300;
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground;
+    @apply rounded-xl shadow-athletic hover:shadow-glow;
+    @apply hover:scale-105 active:scale-95;
+    @apply border border-primary/20;
+  }
+
+  .btn-hero {
+    @apply btn-athletic px-8 py-4 text-base font-bold;
+    @apply bg-gradient-to-r from-secondary to-warning;
+    @apply shadow-[0_20px_60px_-12px_hsl(24_95%_53%_/_0.25)];
+    @apply hover:shadow-[0_25px_80px_-12px_hsl(24_95%_53%_/_0.4)];
+  }
+
+  .btn-success {
+    @apply btn-athletic;
+    @apply bg-gradient-to-r from-success to-[hsl(168_85%_44%)];
+    @apply shadow-[0_20px_60px_-12px_hsl(142_76%_36%_/_0.25)];
+  }
+
+  /* Athletic Card */
+  .card-athletic {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+    @apply rounded-2xl shadow-card;
+    @apply transition-all duration-300 hover:shadow-athletic;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--accent)));
+  }
+
+  /* Upload Zone */
+  .upload-zone {
+    @apply border-2 border-dashed border-primary/30 rounded-2xl p-8;
+    @apply bg-gradient-to-br from-primary/5 to-secondary/5;
+    @apply transition-all duration-300;
+    @apply hover:border-primary/50 hover:bg-primary/10;
+    @apply cursor-pointer;
+  }
+
+  .upload-zone.dragover {
+    @apply border-primary bg-primary/20 scale-102;
+    @apply shadow-glow;
+  }
+
+  /* Athletic Typography */
+  .text-athletic {
+    @apply font-condensed font-bold tracking-wide uppercase;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Bib Card Styles */
+  .bib-card {
+    width: 8in;
+    height: 5in;
+    @apply relative bg-white text-black rounded-lg overflow-hidden;
+    @apply shadow-2xl border-4 border-gray-200;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .bib-card::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    box-shadow: inset 0 0 0 0.125in rgba(0,0,0,0.1);
+  }
+
+  /* Print Styles */
+  @media print {
+    .bib-card {
+      width: 8.25in;
+      height: 5.25in;
+      margin: 0.125in;
+      page-break-inside: avoid;
+    }
   }
 }
